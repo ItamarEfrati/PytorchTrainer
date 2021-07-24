@@ -1,0 +1,20 @@
+{
+  "mode": "train",
+  "model": {  },
+  "solver": {
+    "model_name": "baseline",
+    "num_epochs": 200,
+    "learning_rate" : 1e-4,
+    "checkpoint_directory": "checkpoints",
+    "environment_name": "baseline",
+    "summary_directory": "summary",
+    "set_tensorboard": true,
+    "load_checkpoint": false
+  },
+
+  "dataset": {
+    "dataset_directory": "datasets",
+    "dataset":"MNIST",
+    "batch_size": 100
+  }
+}

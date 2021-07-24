@@ -1,0 +1,24 @@
+{
+  "mode": "train",
+  "model": {
+    "encoding_size": 256
+  },
+  "solver": {
+    "model_name": "VIB",
+    "num_epochs": 200,
+    "learning_rate" : 1e-4,
+    "beta" : 1e-3,
+    "number_of_samples": 12,
+    "checkpoint_directory": "checkpoints",
+    "environment_name": "VIB",
+    "summary_directory": "summary",
+    "set_tensorboard": true,
+    "load_checkpoint": false
+  },
+
+  "dataset": {
+    "dataset_directory": "datasets",
+    "dataset":"MNIST",
+    "batch_size": 100
+  }
+}
