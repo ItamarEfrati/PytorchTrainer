@@ -2,3 +2,4 @@
 /datasets/MNIST/processed/
 /.idea
 **/__pycache__/*
+/checkpoints/

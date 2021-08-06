@@ -12,7 +12,7 @@ SEEDS = 5
 
 
 def get_solver(config):
-    if config['solver']['model_name'] in 'baseline':
+    if 'baseline' in config['solver']['model_name'].lower():
         return BaselineSolver(config)
     elif 'VIB' in config['solver']['model_name']:
         return VIBSolver(config)

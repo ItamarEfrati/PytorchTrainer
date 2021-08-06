@@ -1,0 +1,24 @@
+{
+  "mode": "train",
+  "model": {
+    "target_size": 6
+  },
+  "solver": {
+    "is_testing": true,
+    "model_name": "LSTMBaseline",
+    "num_epochs": 200,
+    "learning_rate" : 1e-4,
+    "checkpoint_directory": "checkpoints",
+    "dataset_name": "WISDOMTimeSeries",
+    "environment_name": "baseline",
+    "summary_directory": "summary/VIB",
+    "set_tensorboard": true,
+    "load_checkpoint": false
+  },
+
+  "dataset": {
+    "dataset_directory": "datasets",
+    "dataset":"MNIST",
+    "batch_size": 100
+  }
+}

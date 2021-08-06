@@ -57,24 +57,25 @@ class VIBSolver(AbstractSolver):
     def update_tensorboard(self, mode='train'):
         self.tf.add_scalars(main_tag='performance/accuracy',
                             tag_scalar_dict={
-                                f'{mode}_one-shot': self.metrics['accuracy'],
-                                f'{mode}_multi-shot': self.metrics['avg_accuracy']},
+                                f'{mode}_one-sample': self.metrics['accuracy'],
+                                f'{mode}_multi-samples': self.metrics['avg_accuracy']},
                             global_step=self.global_iter)
         self.tf.add_scalars(main_tag='performance/error',
                             tag_scalar_dict={
-                                f'{mode}_one-shot': 1 - self.metrics['accuracy'],
-                                f'{mode}_multi-shot': 1 - self.metrics['avg_accuracy']},
+                                f'{mode}_one-sample': 1 - self.metrics['accuracy'],
+                                f'{mode}_multi-sample': 1 - self.metrics['avg_accuracy']},
                             global_step=self.global_iter)
         self.tf.add_scalars(main_tag='performance/cost',
                             tag_scalar_dict={
-                                f'{mode}_one-shot_class': self.metrics['class_loss'],
-                                f'{mode}_one-shot_info': self.metrics['info_loss'],
-                                f'{mode}_one-shot_total': self.metrics['total_loss']},
+                                f'{mode}_one-sample_class': self.metrics['class_loss'],
+                                f'{mode}_one-sample_info': self.metrics['info_loss'],
+                                f'{mode}_one-sample_total': self.metrics['total_loss']},
                             global_step=self.global_iter)
-        self.tf.add_scalars(main_tag=f'mutual_information/{mode}',
-                            tag_scalar_dict={
-                                'I(Z;Y)': self.metrics['izy_bound'],
-                                'I(Z;X)': self.metrics['izx_bound']},
+        self.tf.add_scalars(main_tag=f'mutual_information/{mode} z and x',
+                            tag_scalar_dict={'I(Z;X)': self.metrics['izx_bound']},
+                            global_step=self.global_iter)
+        self.tf.add_scalars(main_tag=f'mutual_information/{mode} z and y',
+                            tag_scalar_dict={'I(Z;Y)': self.metrics['izy_bound']},
                             global_step=self.global_iter)
 
     def update_history(self, save_checkpoint):

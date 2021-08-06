@@ -10,7 +10,9 @@ from torch.autograd import Variable
 
 from datasets.MNIST.MnistDataOrganizer import MnistDataOrganizer
 from datasets.WISDOM.WisdomDataset import WisdomDataOrganizer
+from datasets.WISDOM.WisdomTimeseriesDataset import WisdomTimeSeriesDataOrganizer
 from models.BaselineModel import BaselineModel
+from models.LSTMBaselineModel import LSTMBaselineModel
 from models.VIBMnist import VIBMnist
 from models.VIBWisdom import VIBWisdom
 from models.WeightedEMAModel import WeightEmaModel
@@ -63,6 +65,8 @@ class AbstractSolver(ABC):
             return VIBMnist(model_config).to(self.device)
         elif self.args['model_name'] in 'VIBWisdom':
             return VIBWisdom(model_config).to(self.device)
+        elif self.args['model_name'] in 'LSTMBaseline':
+            return LSTMBaselineModel(model_config).to(self.device)
         return None
 
     def get_data_loaders(self, dataset_config):
@@ -70,6 +74,8 @@ class AbstractSolver(ABC):
             return MnistDataOrganizer(dataset_config).get_data_loaders()
         elif self.args['dataset_name'] in 'WISDOM':
             return WisdomDataOrganizer(dataset_config).get_data_loaders()
+        elif self.args['dataset_name'] in 'WISDOMTimeSeries':
+            return WisdomTimeSeriesDataOrganizer(dataset_config).get_data_loaders()
         return None
 
     def set_mode(self, mode='train'):
@@ -182,7 +188,7 @@ class AbstractSolver(ABC):
 
         file_path = self.checkpoint_directory.joinpath(filename)
         torch.save(states, file_path.open('wb+'))
-        self.logger.debug("=> saved checkpoint '{}' (iter {})".format(file_path, self.global_iter))
+        self.logger.debug(f"=> saved checkpoint '{file_path}' (iter {self.global_iter})")
 
     def load_checkpoint(self, filename='best_acc.tar'):
         file_path = self.checkpoint_directory.joinpath(filename)
@@ -200,7 +206,7 @@ class AbstractSolver(ABC):
                 file_path, self.global_iter))
 
         else:
-            print("=> no checkpoint found at '{}'".format(file_path))
+            print(f"=> no checkpoint found at '{file_path}'")
 
     def get_predictions(self, x, is_test=False):
         return self.weighted_ema_model.model(x) if is_test else self.model(x)
