@@ -155,7 +155,6 @@ class AbstractSolver(ABC):
 
             if self.tensorboard:
                 self.update_tensorboard(mode='test')
-
         self.set_mode('train')
 
     def get_metrics_status(self, idx, status, total_num):

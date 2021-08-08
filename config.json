@@ -11,7 +11,7 @@
     "learning_rate" : 1e-4,
     "beta" : 1e-3,
     "number_of_samples": 12,
-    "number_of_classes": 6,
+    "number_of_classes": 10,
     "checkpoint_directory": "checkpoints/VIB",
     "summary_directory": "summary/VIB",
     "set_tensorboard": true,

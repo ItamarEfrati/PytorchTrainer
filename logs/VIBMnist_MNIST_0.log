@@ -1,1 +1,1 @@
-2021-08-06 11:19:35,181 | INFO | VIBMnist_MNIST_0 {'accuracy': 0.9838, 'avg_accuracy': 0.9887, 'izy_bound': 2.4703804278373718, 'izx_bound': 21.61755136489868, 'class_loss': 0.11458218724757899, 'info_loss': 21.61755136489868, 'total_loss': 0.13619973961263895, 'epoch': 165, 'iter': 99000}
+2021-08-06 17:48:56,793 | INFO | VIBMnist_MNIST_0 {'accuracy': 0.9838, 'avg_accuracy': 0.9887, 'izy_bound': 3.2073458409309388, 'izx_bound': 21.61755136489868, 'class_loss': 0.11458218724757899, 'info_loss': 21.61755136489868, 'total_loss': 0.13619973961263895, 'epoch': 165, 'iter': 99000}
